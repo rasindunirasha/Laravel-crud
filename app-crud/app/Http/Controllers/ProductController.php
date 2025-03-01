@@ -57,13 +57,13 @@ class ProductController extends Controller
 
 public function destroy($id)
 {
-    dd("Delete function called with ID: " . $id); // This will stop execution and display the ID
+    $product = Product::findOrFail($id); // Ensure the product exists
 
-    $product = Product::findOrFail($id);
-    $product->delete();
+    $product->delete(); // Delete the product
 
     return redirect()->route('products.index')->with('success', 'Product deleted successfully!');
 }
+
 
 
 
